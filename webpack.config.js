@@ -25,12 +25,16 @@ module.exports = {
     // Creates a bundle "./dist/client.js" (named after the key)
     client: "./src/client.js",
     // Creates a bundle "./dist/defaults.js" (named after the key)
-    defaults: "./src/defaults.js"
+    defaults: "./src/defaults.js",
+    server: "./src/defaults.js"
   },
   output: {
     // The "path" property is used to specify the location where
     // our bundled files are created. By default, it is
     // path.join(__dirname, "build")
-    path: path.join(__dirname, "build")
+		path: path.join(__dirname, "build"),
+    // The "filename" property to change the names of the
+    // bundled files.
+    filename: "[name].bundle.js"
   }
 };
