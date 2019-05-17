@@ -1,10 +1,17 @@
 const path = require("path")
+const HTMLWebpackPlugin = require("html-webpack-plugin");
 
 // Entry Points
 // https://webpack.js.org/concepts/entry-points/
 
 // Output
 // https://webpack.js.org/concepts/output
+
+// Loaders
+// https://webpack.js.org/concepts/loaders
+
+// Plugins
+// https://webpack.js.org/concepts/plugins
 
 module.exports = {
 	mode: "development",
@@ -36,5 +43,32 @@ module.exports = {
     // The "filename" property to change the names of the
     // bundled files.
     filename: "[name].bundle.js"
-  }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        // Use "exclude" with a regular express to
+        // files that should be ignored by this loader.
+        // Notably, we should always ignore node_modules/.
+        loader: "babel-loader"
+      },
+      {
+        test: /\.(png|jpg|gif|webp|svg)$/,
+        loader: "file-loader",
+        options: {
+          outputPath: "images/"
+        }
+      }
+    ]
+  },
+  plugins: [
+    new HTMLWebpackPlugin({
+      title: "Webpack Demo", // <title> of the web page
+      chunks: ["client"]
+      // "chunks" tells webpack which bundles to include
+      // in the html file.
+    })
+  ]
 };
